@@ -1,0 +1,28 @@
+<template name="navbarUserMenu">
+    <div>
+        <ul class="nav navbar-nav navbar-right">
+        	<li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="http://graph.facebook.com/{{currentUser.profile.fbid}}/picture" height="18" width="18" class="img-rounded" alt="Profile Picture"> {{currentUser.profile.name}} <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li>
+                        {{#if currentUser.profile.admin}}
+                        	<a id="customer-mode"><i class="fa fa-fw fa-user"></i> Modo cliente</a>
+                        {{else}}
+                        	<a id="admin-mode"><i class="fa fa-fw fa-user"></i> Sou vendedor</a>
+                        {{/if}}
+                    </li>
+                    <li>
+                        <a id="bootstrap-tour"><i class="fa fa-fw fa-question"></i> Ajuda</a>
+                    </li>
+                    <!--<li>
+                        <a href="#"><i class="fa fa-fw fa-gear"></i> Páginas</a>
+                    </li>-->
+                    <li class="divider"></li>
+                    <li>
+                        <a id="logout"><i class="fa fa-fw fa-power-off"></i> Sair</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</template>

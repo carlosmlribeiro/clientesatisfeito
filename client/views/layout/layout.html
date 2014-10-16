@@ -1,0 +1,43 @@
+<template name="layout">
+    
+    <div id="wrapper">
+    	
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+            
+            <div class="container">
+                
+                <div class="navbar-header">
+                    {{#if showSideNav}}
+                        <!-- Show toggle button only to show sidenav -->
+                        {{> toggleButton}}
+                    {{/if}}
+                    <a class="navbar-brand" href="#" id="navbrand" style="font-family: 'sl';">cliente satisfeito</a>
+                </div>
+
+                <!-- Right navigation (either user profile or homepage buttons) -->
+                {{#if currentUser}}
+                    {{> navbarUserMenu}}
+                {{else}}
+                    {{> navbarHomepageMenu}}
+                {{/if}}
+
+                {{#if showSideNav}}
+                    {{> sidenav}}   
+                {{/if}}
+            </div>
+            <!-- /.container -->
+        </nav>
+        
+        {{> errors}}
+
+        {{#if currentUser}}
+            {{#if showComingSoon}}
+                {{> comingSoon}}
+            {{/if}}
+        {{/if}}
+        
+        {{> yield}}
+
+    </div>
+
+</template>

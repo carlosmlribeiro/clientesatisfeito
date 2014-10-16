@@ -1,0 +1,16 @@
+<template name="errors">
+	<div class="errors">
+		<div class="errors row-fluid{{#if showSideNav}}-admin{{/if}}">
+			{{#each errors}}
+				{{> error}}
+			{{/each}}
+		</div>
+	</div>
+</template>
+
+<template name="error">
+	<div class="alert alert-{{type}}">
+	    <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>                            
+	    {{message}}
+	</div>
+</template>

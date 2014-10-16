@@ -1,0 +1,50 @@
+<template name="profileAccount">
+
+	<div class="panel {{activeAccountClass status}}">
+  		<div class="panel-heading">
+    		<h4 class="panel-title">
+          		<a data-toggle="collapse" data-parent="#accordion" href="#collapse{{id}}">
+                	<div class="media">
+                  		<span class="pull-left">
+                      		<img class="media-object" src="http://graph.facebook.com/{{id}}/picture" alt="{{name}} profile photo">
+                  		</span>
+                  		<span class="pull-right glyphicon {{activeAccountIcon status}}"></span>
+                  		<div class="media-body">
+                      		<h5 class="media-heading"><strong>{{name}}</strong>
+                      		</h5>
+                      		<p>{{category}}</p>
+                  		</div>
+                  	</div>
+          		</a>
+    		</h4>
+  		</div>
+  		<div id="collapse{{id}}" class="panel-collapse collapse">
+    		<div class="panel-body">
+          {{#if likes}}<p><i class="fa fa-thumbs-o-up"> {{likes}}</i></p>{{/if}}
+          <p><b>Sobre:</b> {{about}}</p>
+          <p><b>Website:</b> <a href="{{website}}" target="_new">{{website}}</a></p>
+          <p><b>Estado:</b> {{translate status}} {{#if accountPending status}}<span style="color:#0000FF; cursor:pointer" data-toggle='modal' data-target='#pendingWarning{{id}}' class='fa fa-question-circle'></span>{{/if}}</p>
+          <p>{{#if accountInactive status}}<button type="button" id="{{id}}" class="btn btn-success activatePage">Activar</button>{{/if}}</p>
+        </div>
+    	</div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="pendingWarning{{id}}" tabindex="-1" role="dialog" aria-labelledby="pendingWarning" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <h4 class="modal-title" id="pendingWarning">Activação pendente</h4>
+          </div>
+          <div class="modal-body">
+            http://clientesatisfeito.pt/?ref={{id}}
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary shareFacebook"><span class="fa fa-facebook"></span> Partilhar no facebook</button>
+            <i><span id="errormsg"></span></i>
+          </div>
+        </div>
+      </div>
+    </div>
+</template>

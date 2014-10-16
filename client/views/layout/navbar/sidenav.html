@@ -1,0 +1,22 @@
+<template name="sidenav">
+	<!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+	<div class="collapse navbar-collapse navbar-ex1-collapse">
+	    <ul class="nav navbar-nav side-nav">
+	        <li class="{{activeRouteClass 'home'}} disabled">
+	            <a href="{{pathFor 'home'}}"><i class="glyphicon glyphicon-dashboard"></i> Painel de Controlo</a>
+	        </li>
+	        <li class="{{activeRouteClass 'campaign'}} disabled">
+	            <a href="campanhas.html"><i class="glyphicon glyphicon-list-alt"></i> Campanhas</a>
+	        </li>
+	        <li class="{{activeRouteClass 'customers'}} disabled">
+	            <a href="clientes.html"><i class="glyphicon glyphicon-user"></i> Clientes</a>
+	        </li>
+	        <li class="{{activeRouteClass 'messages'}} disabled">
+	            <a href="mensagens.html"><i class="glyphicon glyphicon-envelope"></i> Mensagens</a>
+	        </li>
+	        <li class="{{activeRouteClass 'profile'}}">
+	            <a href="{{pathFor 'profile'}}"><i class="glyphicon glyphicon-wrench"></i> Perfil de utilizador</a>
+	        </li>
+	    </ul>
+	</div> 
+</template>
