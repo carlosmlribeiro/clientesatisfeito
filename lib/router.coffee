@@ -2,6 +2,12 @@ Router.configure
 	layoutTemplate: 'layout'
 	loadingTemplate: 'loading'
 	notFoundTemplate: 'notFound'
+	onRun: () ->
+		if Meteor.isClient
+			$('body').animate
+				scrollTop: 0
+				, 0
+		@next()
 
 Router.map ->
 	@route 'index',
@@ -25,29 +31,31 @@ Router.map ->
 				@response.end()
 				
 
-requireLogin = (pause) ->
+requireLogin = () ->
 	if !Meteor.user()
 		if Meteor.loggingIn()
 			@render @loadingTemplate
-			pause()
 		else
 			Router.go '/'
 	else
 		if Meteor.user().profile.admin is true
 			Router.go '/profile'
+		else
+			@next()
 
-requireAdmin = (pause) ->
+requireAdmin = () ->
 	if !Meteor.user()
 		if Meteor.loggingIn()
 			@render @loadingTemplate
-			pause()
 		else
 			Router.go '/'
 	else
 		if !Meteor.user().profile.admin is true
 			Router.go '/home'
+		else
+			@next()
 
-requireUnknown = (pause) ->
+requireUnknown = () ->
 	if Meteor.user()
 		if Meteor.user().profile.admin is true
 			Router.go '/profile'
@@ -56,7 +64,8 @@ requireUnknown = (pause) ->
 	else
 		if Meteor.loggingIn()
 			@render @loadingTemplate
-			pause()
+		else
+			@next()
 
 Router.onBeforeAction () ->
 	if @params.ref
@@ -64,6 +73,8 @@ Router.onBeforeAction () ->
 		d.setTime(d.getTime() + (1*24*60*60*1000));
 		expires = "expires="+d.toUTCString();
 		document.cookie = "ref=" + @params.ref + "; " + expires
+	@next()
+
 Router.onBeforeAction 'loading',
 	except: 'mailgun'
 Router.onBeforeAction requireLogin, 
@@ -75,9 +86,4 @@ Router.onBeforeAction requireUnknown,
 Router.onBeforeAction () ->
 	if Meteor.isClient
 		clearErrors()
-
-Router.onRun ()->
-	if Meteor.isClient
-		$('body').animate
-			scrollTop: 0
-			, 0
+	@next()

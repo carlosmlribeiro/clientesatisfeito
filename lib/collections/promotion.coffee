@@ -1,4 +1,4 @@
-@Promotion = new Meteor.Collection 'promotions'
+@Promotion = new Mongo.Collection 'promotions'
 
 Meteor.methods
   createPromotion: (promotion) -> 

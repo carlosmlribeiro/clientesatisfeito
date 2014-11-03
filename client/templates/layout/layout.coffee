@@ -1,6 +1,6 @@
 Template.layout.helpers
 	showComingSoon: () ->
-		if Router.current().route.name in ['profile', 'promotion/:_id']
+		if Router.current().route.getName() in ['profile', 'promotion/:_id']
 			return false
 		else
 			return true

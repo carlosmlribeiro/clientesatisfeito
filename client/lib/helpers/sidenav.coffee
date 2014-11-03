@@ -1,5 +1,5 @@
 UI.registerHelper 'showSideNav', () ->
-	if Router.current().route.name in ['profile']
+	if Router.current().route.getName() in ['profile']
 		return true
 	else
 		return false

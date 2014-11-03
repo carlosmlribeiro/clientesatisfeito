@@ -1,4 +1,4 @@
-@Errors = new Meteor.Collection null
+@Errors = new Mongo.Collection null
 
 @throwError = (message, type) ->
 	if not message

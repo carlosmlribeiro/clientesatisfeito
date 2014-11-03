@@ -3,7 +3,7 @@ Meteor.methods
 		
 		activationURL = Meteor.absoluteUrl() + '?ref=' + id
 		
-		#make validations
+		#make validations - validate if user is admin
 
 		#if referral account +1 in ref account
 		result = Account.findOne({"_id": id}, {fields: {_id:0, referral:1}})
