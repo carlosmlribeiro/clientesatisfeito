@@ -2,12 +2,6 @@ Router.configure
 	layoutTemplate: 'layout'
 	loadingTemplate: 'loading'
 	notFoundTemplate: 'notFound'
-	onRun: () ->
-		if Meteor.isClient
-			$('body').animate
-				scrollTop: 0
-				, 0
-		@next()
 
 Router.map ->
 	@route 'index',
@@ -86,4 +80,5 @@ Router.onBeforeAction requireUnknown,
 Router.onBeforeAction () ->
 	if Meteor.isClient
 		clearErrors()
+		$('body').scrollTop 0
 	@next()

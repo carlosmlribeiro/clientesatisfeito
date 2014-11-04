@@ -53,23 +53,6 @@ removeFromMailingList = (list, user) ->
 		else
 			console.log result
 
-sendEmail = (user, template, tag) ->
-	console.log "sending email to " + user.email
-	Meteor.http.post mailgunURL + mailDomain + "/messages",
-	auth: 'api:' + mailKey,
-	params:
-		from: "no-reply@"+mailDomain
-		to: user.name + " <"+user.email+">"
-		subject: "Bem vindo ao Cliente Satisfeito"
-		text: "Bem vindo\n http://clientesatisfeito.pt \nObrigado \nGrande abraço! \n\nTo unsubscribe from all communications click: <%unsubscribe_url%>"
-		o:tag: tag,
-		#o:testmode: 'yes',
-	(err, result) ->
-		if err
-			console.log err
-		else
-			console.log result
-
 validateEmail = (email) ->
 	try
 		console.log "Validating email " + email
@@ -98,6 +81,24 @@ changeEmail = (old, newEmail, special) ->
 		console.log err
 
 Meteor.methods
+	sendEmail: (user, template, tag, data) ->
+		console.log "sending email to " + user.profile.email
+		Meteor.http.post mailgunURL + mailDomain + "/messages",
+		auth: 'api:' + mailKey,
+		params:
+			from: "no-reply@"+mailDomain
+			to: user.profile.name + " <"+user.profile.email+">"
+			subject: "Bem vindo ao Cliente Satisfeito"
+			html: Handlebars.templates[template](data)
+			text: "Bem vindo ao Cliente Satisfeito.pt\n\nObrigado por se ter registado no Cliente Satisfeito. Estamos neste momento em fase de pré-inscrição, e precisamos da vossa ajuda para dar a conhecer o Cliente Satisfeito.\n\nPartilha o Cliente Satisfeito e se 5 novos utilizadores se registarem a partir da vossa indicação ficaram para sempre como Clientes Pioneiros, com acesso privilegiado a toda a aplicação.\n\nPara tal, utilizem os botões aqui presentes para dar a conhecer a aplicação ao maior número de pessoas possível. A nossa visão é um Portugal repleto de Clientes Satisfeitos.\n\nBrevemente a aplicação estará disponível. Não se esqueçam de gostar da nossa página no Facebook para estarem a par das novidades.\n\n\nPara não receber mais email siga este link <%unsubscribe_url%>"
+			o:tag: tag,
+			#o:testmode: 'yes',
+		(err, result) ->
+			if err
+				console.log err
+			else
+				console.log result
+
 	unsubscribeUser: (body) ->
 		#hash = body.timestamp + '' + body.token
 		#if signature is crypto.createHmac('md5', hash).update(message).digest('base64')
@@ -125,7 +126,7 @@ Meteor.users.after.insert (userId, doc) ->
 		
 		addToMailingList "noticias@" + mailDomain, doc, false
 
-		sendEmail doc.profile, 'mail', "welcome"
+		#sendEmail doc.profile, 'mail', "welcome"
 	catch e
 		# Silent Error
 	

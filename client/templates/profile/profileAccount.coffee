@@ -1,4 +1,11 @@
 Template.profileAccount.events
+    'shown.bs.modal .fade': (e, tmpl) ->
+        $('#shareURL' + @id).select()
+
+    'click .shareURL': (e, tmpl) ->
+        e.preventDefault()
+        $('#shareURL' + @id).select()
+
     'click .activatePage': (e, tmpl) ->
         id = @id
         status = Meteor.call "activateAccount", id, (err, result) ->
