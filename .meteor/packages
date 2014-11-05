@@ -18,4 +18,5 @@ cmather:handlebars-server
 manuelschoebel:wait-on-lib
 http
 underscore
+meteorhacks:kadira
 

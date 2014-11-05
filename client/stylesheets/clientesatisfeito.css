@@ -481,9 +481,9 @@ span#errormsg {
 
 @font-face {
     font-family: sl; 
-    src: url('http://cdn.clientesatisfeito.pt/fonts/sl.eot'); /* IE9 Compat Modes */
-    src: url('http://cdn.clientesatisfeito.pt/fonts/sl.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */ 
-    url('http://cdn.clientesatisfeito.pt/fonts/sl.ttf') format('truetype');  
+    src: url('/fonts/sl.eot'); /* IE9 Compat Modes */
+    src: url('/fonts/sl.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */ 
+    url('/fonts/sl.ttf') format('truetype');  
     font-weight: normal;  
 }
 

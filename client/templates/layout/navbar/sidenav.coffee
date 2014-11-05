@@ -8,6 +8,6 @@ Template.sidenav.helpers
 		args.pop()
 
 		active = _.any args, (name) -> 
-			return Router.current() && Router.current().route.name is name
+			return Router.current() && Router.current().route.getName() is name
 
 		return active && 'active'
