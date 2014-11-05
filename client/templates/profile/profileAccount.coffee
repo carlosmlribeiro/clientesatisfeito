@@ -7,6 +7,7 @@ Template.profileAccount.events
         $('#shareURL' + @id).select()
 
     'click .activatePage': (e, tmpl) ->
+        $(e.target).attr('disabled','disabled');
         id = @id
         status = Meteor.call "activateAccount", id, (err, result) ->
             if err

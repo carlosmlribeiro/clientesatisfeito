@@ -10,7 +10,7 @@ Meteor.methods
 			throw new Meteor.Error '403', "Para activar a página precisa de permissões para criar conteúdo na mesma", "danger"
 
 		#if referral account +1 in ref account
-		result = Account.findOne({"_id": id}, {fields: {_id:0, referral:1}})
+		result = Account.findOne({"_id": id}, {fields: {_id:0, referral:1, name:1}})
 
 		if result.referral
 			Account.update {"_id": result.referral}, {"$inc": {"numRef": 1}}
@@ -21,7 +21,7 @@ Meteor.methods
 		Account.update {"_id": id}, {"$set": {"status": "pending", "activationURL": activationURL}}
 
 		#send email
-		Meteor.call 'sendEmail', Meteor.user(), 'activateAccount', '', {url: encodeURIComponent(activationURL)}, (err, result) ->
+		Meteor.call 'sendEmail', Meteor.user(), 'activateAccount', '', "Bem vindo ao Cliente Satisfeito, " + result.name, {url: encodeURIComponent(activationURL), name: result.name}, (err, result) ->
 			if err
 				console.log err
 		
