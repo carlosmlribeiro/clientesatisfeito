@@ -4,7 +4,7 @@ Meteor.methods
 		activationURL = Meteor.absoluteUrl() + '?ref=' + id
 		
 		#make validations - validate if user has CREATE_CONTENT
-		userAccount = _.findWhere(Meteor.user().accounts, {_id: id})
+		userAccount = _.findWhere(Meteor.user().accounts, {id: id})
 
 		if not _.contains(userAccount.perms, "CREATE_CONTENT")
 			throw new Meteor.Error '403', "Para activar a página precisa de permissões para criar conteúdo na mesma", "danger"
