@@ -20,6 +20,7 @@ Meteor.methods
 		Meteor.users.update {"_id": Meteor.userId(), "accounts.id": id}, {"$set": {"accounts.$.status": "pending", "accounts.$.activationURL": activationURL}}
 		Account.update {"_id": id}, {"$set": {"status": "pending", "activationURL": activationURL}}
 
+		@unblock
 		#send email
 		Meteor.call 'sendEmail', Meteor.user(), 'activateAccount', '', "Bem vindo ao Cliente Satisfeito, " + result.name, {url: encodeURIComponent(activationURL), name: result.name}, (err, result) ->
 			if err

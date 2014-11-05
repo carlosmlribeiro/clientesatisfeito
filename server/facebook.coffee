@@ -4,12 +4,11 @@ Meteor.methods
 
 		@unblock
 
-		#link = Meteor.absoluteUrl() + '?ref=' + accountId
 		try
 			result = Meteor.http.post "https://graph.facebook.com/v2.1/" + accountId + "/feed",
 			params:
 				access_token: access_token
-				link: "http://clientesatisfeito.meteor.com" #activationURL
+				link: activationURL
 				message: 'Por um Portugal cheio de clientes satisfeitos! Registem-se também na aplicação @[550434438435613].'
 				picture: 'http://cdn.clientesatisfeito.pt/img/logo.jpg'
 				caption: 'O melhor vendedor é um cliente satisfeito'
