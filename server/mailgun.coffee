@@ -86,7 +86,7 @@ Meteor.methods
 		Meteor.http.post mailgunURL + mailDomain + "/messages",
 		auth: 'api:' + mailKey,
 		params:
-			from: "no-reply@"+mailDomain
+			from: "Cliente Satisfeito <info@"+mailDomain+">"
 			to: user.profile.name + " <"+user.profile.email+">"
 			subject: subject
 			html: Handlebars.templates[template](data)
