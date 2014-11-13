@@ -2,6 +2,7 @@ Router.configure
 	layoutTemplate: 'layout'
 	loadingTemplate: 'loading'
 	notFoundTemplate: 'notFound'
+	trackPageView: true
 
 Router.map ->
 	@route 'index',
