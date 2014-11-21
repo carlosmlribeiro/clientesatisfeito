@@ -1,5 +1,7 @@
 Template.navbarHomepageMenu.events
 	'click #toplogin': (e, tmpl) ->
+		if ga?
+			ga('send','event','login','toplogin')
 		login()
 
 	'click #about-btn': (e,tmpl) ->

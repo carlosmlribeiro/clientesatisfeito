@@ -1,5 +1,7 @@
 Template.index.events
 	'click #login': (e, tmpl) ->
+		if ga?
+			ga('send','event','login','centerlogin')
 		login()
 
 	'click #about-btn-bottom': (e,tmpl) ->
