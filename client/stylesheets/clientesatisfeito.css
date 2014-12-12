@@ -125,6 +125,10 @@
 	background-color: #FF5629;
 }
 
+.voffset {
+    margin-bottom: 15px;
+}
+
 /* Content
 */
 
@@ -245,8 +249,13 @@ h6 {
     font-size: 6em;
 }
 
-.intro-message > h5 a {
+.intro-message > h5 small{
     color: #F0F1F2;
+}
+
+.intro-message > h5 a{
+    color: #F0F1F2;
+    text-decoration: underline;
 }
 
 .intro-divider {
@@ -474,6 +483,21 @@ span#errormsg {
 
 .media-body {
     padding: 5px 0 0 5px;
+}
+
+.artst-pic{position: relative;}
+.artst-pic span a{color: #000; font-size: 16px; display: none;}
+.artst-pic span.artst-plus{position: absolute; text-align: center; left: 10%; top: 30%;}
+.artst-pic:hover span a{display: block; } 
+.artst-pic:hover img {opacity: 0.25}
+
+.btn-circle-footer.btn-lg {
+  width: 50px;
+  height: 50px;
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.33;
+  border-radius: 25px;
 }
 
 /* Fonts

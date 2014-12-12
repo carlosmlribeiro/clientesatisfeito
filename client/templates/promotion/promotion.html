@@ -1,10 +1,69 @@
-<template name="promotionView">
-	<p>promo</p>
-	<p>promo</p>
-	<p>promo</p>
-	<p>promo</p>
-	<p>promo</p>
-	<p>promo</p>
-	http://clientesatisfeito.meteor.com/promotion/2Dju965ZG5DsSuqCL
-	
+<template name="promotion">
+	<div id="container-homepage">
+	    <div id="container-index"> 
+	      
+	      <!-- Header -->
+          <div class="container">
+              <div class="row">
+                  <div class="col-lg-12">
+                      <h2>Foi convidado para ser um <span style="font-family: 'sl';">cliente satisfeito</span></h2>
+                      <h3>{{campaign.name}}</h3>
+                      <h4>{{campaign.description}}</h4>
+                      <hr class="intro-divider">	                          
+						{{#if currentUser}}
+							{{#if currentUser.profile.admin}}
+								<p><button id="customer-mode" type="button" class="btn btn-default navbar-btn sign-in">Usar o Cliente Satisfeito como {{currentUser.profile.name}}</button></p> 
+							{{else}}
+								{{#if isOwner}}
+										<p><img src="{{c.url promotion.imageId width=400 height=250 crop='lfill' gravity='center'}}"></p>
+										<ul class="list-inline intro-social-buttons">
+											<li>
+												<form role="form">
+										        	<div class="form-group">
+										            	<label class="control-label" for="image">Imagem </label>
+										            	{{#c_upload_stream callback="save_ug_image"}}
+									                    	<input type="file" id="image" class="form-control">
+									                    {{/c_upload_stream}}
+									                    <span id="helpBlock-image" class="help-block">A foto será partilhada no seu mural do Facebook</span>
+											            {{#each c.uploading_images}}
+											                <p><div class="progress">
+											                  <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="{{percent_uploaded}}" aria-valuemin="0" aria-valuemax="100" style="width: {{percent_uploaded}}%">
+											                    <span class="sr-only">{{percent_uploaded}}% Complete</span>
+											                  </div>
+											                </div></p>
+											            {{/each}}
+										             </div>
+										             <div class="form-group">
+										            	<label class="control-label" for="comment">Mensagem </label>
+									                    <textarea class="form-control addCustomer" id="comment" placeholder="Insira a sua mensagem"></textarea>
+									                    <span id="helpBlock{{_id}}" class="help-block">Adicione uma mensagem pessoal à sua partilha</span>
+										             </div>								                
+									                <button type="submit" id="share" class="btn btn-block btn-social btn btn-facebook" style="font-family: arial, sans-serif;font-weight: bold;"><i class="fa fa-facebook"></i> <span id="btnText">Partilhar no Facebook</span></button>
+									                <button type="button" id="complain" class="btn btn-default" data-dismiss="modal">Não estou satisfeito, envie a minha mensagem ao vendedor</button>
+										        </form>
+											</li>
+										</ul> 
+								{{else}}
+									{{#if promotion.ownedBy}}
+										promotion already claimed
+									{{else}}
+										<p><button id="claim" type="button" class="btn btn-default navbar-btn sign-in">Reclamar promoção</button></p> 
+									{{/if}}
+								{{/if}}
+							{{/if}}
+						{{else}}
+							<ul class="list-inline intro-social-buttons">
+								<li>
+									<a id="login" class="btn btn-block btn-social btn btn-facebook" style="font-family: arial, sans-serif;font-weight: bold;"><i class="fa fa-facebook"></i>Iniciar sessão com Facebook para reclamar esta oferta</a>
+								</li>
+							</ul>       
+							<h5><small>Ao iniciar sessão está a concordar com os <a data-toggle='modal' data-target='#termsofuse' style="cursor:pointer">Termos de Utilização</a></small></h5>
+						{{/if}}	                          
+                  </div>
+              </div>
+	          <!-- /.container -->
+	      </div>
+		</div>
+	</div>
+	{{> termsofuse}}
 </template>

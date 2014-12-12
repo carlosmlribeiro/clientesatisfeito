@@ -89,10 +89,10 @@ Meteor.methods
     	else
     		Meteor.users.update( { _id: Meteor.userId() }, { $set: { 'profile': user.profile, 'accounts': user.accounts }} )
 
-#deny users to set profile.admin to true and profile.accounts
+#deny users to set profile.admin to true if no accountsand profile.accounts
 Meteor.users.deny
 	update: (userId, doc, fields, modifier) ->
-		if _.findWhere(modifier, 'profile.admin': true) is undefined
+		if _.findWhere(modifier, 'profile.admin': true) is undefined || Meteor.user().profile.accounts.length > 0
 			false
 		else
 			true

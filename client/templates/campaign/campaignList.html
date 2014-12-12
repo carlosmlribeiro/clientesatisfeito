@@ -1,0 +1,58 @@
+<template name="campaignList">
+	 <div id="container-admin">
+
+        <div class="container-fluid">
+
+            <!-- Page Heading -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">
+                        Campanhas <small>criar e alterar campanhas</small>
+                    </h1>
+                </div>
+            </div>
+
+            <div class="row voffset">
+            	<div class="col-lg-12">
+					<button type="button" data-toggle='modal' data-target='#newCampaign' class="btn btn-success">Nova campanha</button>
+				</div>
+			</div>
+            
+            <div class="row">
+                {{#each campaign}}
+                    {{> campaignItem}}
+                {{/each}}
+            </div>
+            
+        </div>
+        <!-- /#page-wrapper -->
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="newCampaign" tabindex="-1" role="dialog" aria-labelledby="newCampaign" aria-hidden="true">
+      <div class="modal-dialog">
+        <form role="form">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title" id="newCampaign">Nova campanha</h4>
+              </div>
+              <div class="modal-body">
+                <div id="campaignNameGroup" class="form-group">
+                    <label class="control-label" for="campaignName">Nome <small>*</small></label>
+                    <input type="text" class="form-control" id="campaignName" placeholder="Insira o nome (Ex: Campanha de Natal)" autofocus>
+                    <span id="helpBlock" class="help-block"></span>
+                </div>
+                <div id="campaignDescriptionGroup" class="form-group">
+                    <label class="control-label" for="campaignDescription">Descrição </label>
+                    <input type="text" class="form-control" id="campaignDescription" placeholder="Insira a descrição (Ex: Oferta de uma lavagem automóvel em cada revisão)">
+                    <span id="helpBlock" class="help-block"></span>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                <button type="submit" id="createCampaign" class="btn btn-success">OK</button>
+              </div>
+            </div>
+        </form>
+      </div>
+    </div>
+</template>

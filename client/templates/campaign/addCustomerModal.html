@@ -1,0 +1,25 @@
+<template name="addCustomerModal">
+	<!-- Modal -->
+		<div class="modal fade newCustomer" id="newCustomer{{_id}}" tabindex="-1" role="dialog" aria-labelledby="newCustomer{{_id}}" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <form role="form">
+	            <div class="modal-content">
+	              <div class="modal-header">
+	                <h4 class="modal-title" id="newCustomer{{_id}}">Novo Cliente</h4>
+	              </div>
+	              <div class="modal-body">
+	                <div id="customerNameGroup{{_id}}" class="form-group">
+	                    <label class="control-label" for="addCustomer">Email <small>*</small></label>
+	                    <input type="email" class="form-control addCustomer" id="addCustomer{{_id}}" placeholder="Insira o email do cliente" autofocus>
+	                    <span id="helpBlock{{_id}}" class="help-block">O cliente será informado por email para a sua participação na campanha</span>
+	                </div>
+	              </div>
+	              <div class="modal-footer">
+	                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+	                <button type="submit" id="addCustomerBtn{{_id}}" class="btn btn-success addCustomerBtn">OK</button>
+	              </div>
+	            </div>
+	        </form>
+		  </div>
+		</div>
+</template>

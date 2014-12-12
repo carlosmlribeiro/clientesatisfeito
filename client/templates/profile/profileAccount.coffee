@@ -9,7 +9,7 @@ Template.profileAccount.events
     'click .activatePage': (e, tmpl) ->
         $(e.target).attr('disabled','disabled');
         id = @id
-        status = Meteor.call "activateAccount", id, (err, result) ->
+        Meteor.call "activateAccount", id, (err, result) ->
             if err
                 throwError err.message, err.details
             if result is 'pending'
@@ -17,11 +17,13 @@ Template.profileAccount.events
                     show: true
 
     'click .shareFacebook': (e, tmpl) ->
+        $(e.target).text('A partilhar...')
         $(e.target).attr('disabled','disabled');
         
         Meteor.call 'shareOnFacebook', @id, @access_token, @activationURL, (err, result) ->
             if err
-                $('#errormsg').append("<p>" + err.message + "</p>") 
+                $(e.target).text('Erro!')
+                $('#errormsg' + @id).append("<p>" + err.message + "</p>") 
 
             if result
                 $(e.target).text('Partilhado');

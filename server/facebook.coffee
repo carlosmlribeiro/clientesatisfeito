@@ -1,6 +1,7 @@
+facebookNS = process.env.FACEBOOK_NS || Meteor.settings.FACEBOOK_NS
+
 Meteor.methods
 	shareOnFacebook: (accountId, access_token, activationURL) ->
-		accessToken = access_token
 
 		@unblock
 
@@ -19,3 +20,25 @@ Meteor.methods
 		Account.update {"_id": accountId}, {"$push": {"posts": result.data.id}}
 
 		true
+
+	sharePromotionOnFacebook: (campaignURL, message, image) ->
+		@unblock
+
+		if image
+			params = 
+				'image[0][url]': image
+				'image[0][user_generated]': true
+
+		if message
+			params.message = message
+
+		params.access_token = Meteor.user().services.facebook.accessToken
+		params.offer = campaignURL #"http://samples.ogp.me/476432209161685"
+
+		try
+			result = Meteor.http.post "https://graph.facebook.com/v2.1/" + Meteor.user().profile.fbid + "/" + facebookNS + ":subscribe",
+			params: params
+		catch e
+			throw new Meteor.Error e.response.statusCode, e.response.data.error.message, "danger"
+
+		result.data.id

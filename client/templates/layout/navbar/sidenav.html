@@ -5,8 +5,8 @@
 	        <li class="{{activeRouteClass 'home'}} disabled">
 	            <a href="{{pathFor 'home'}}"><i class="glyphicon glyphicon-dashboard"></i> Painel de Controlo</a>
 	        </li>
-	        <li class="{{activeRouteClass 'campaign'}} disabled">
-	            <a href="campanhas.html"><i class="glyphicon glyphicon-list-alt"></i> Campanhas</a>
+	        <li class="{{activeRouteClass 'campaignList'}} {{#unless currentUser.profile.activeAccount}}disabled{{/unless}}">
+	            <a href="{{pathFor 'campaignList'}}"><i class="glyphicon glyphicon-list-alt"></i> Campanhas</a>
 	        </li>
 	        <li class="{{activeRouteClass 'customers'}} disabled">
 	            <a href="clientes.html"><i class="glyphicon glyphicon-user"></i> Clientes</a>
@@ -17,6 +17,13 @@
 	        <li class="{{activeRouteClass 'profile'}}">
 	            <a href="{{pathFor 'profile'}}"><i class="glyphicon glyphicon-wrench"></i> Perfil de utilizador</a>
 	        </li>
+	        {{#if currentUser.profile.activeAccount}}
+	        	{{#if isSuperAccount currentUser.profile.activeAccount.id}}
+	        		<li class="{{activeRouteClass 'appDashboard'}}">
+	            		<a href="{{pathFor 'appDashboard'}}"><i class="glyphicon glyphicon-cog"></i> Master Control Room</a>
+	            	</li>
+	            {{/if}}
+	        {{/if}}
 	    </ul>
 	</div> 
 </template>
