@@ -7,7 +7,7 @@ Meteor.methods
 			throw new Meteor.Error 401, "Por favor inicie a sessão!"
 
 		if not user.profile?.activeAccount?.id or not user.profile?.admin
-			throw new Meteo.Error 401, "Tem que ser vendedor para criar uma promoção!"
+			throw new Meteor.Error 401, "Tem que ser vendedor para criar uma promoção!"
 
 		promotion =
 			"createdBy": user._id
@@ -45,14 +45,12 @@ Meteor.methods
 
 		image = image.replace /upload/, "upload/t_watermark"
 
-		console.log image
-
-		Meteor.call "sharePromotionOnFacebook", campaignURL, message, image, (err, result) ->
-			if err
-				console.log err
-			else
+		try
+			result = Meteor.call "sharePromotionOnFacebook", campaignURL, message, image
+			if result
 				Promotion.update promotionId, {$set: {'shareId': result, 'status': 'shared'}}
 				Campaign.update {"_id": campaignId, "promotions.id": promotionId}, {$set: {'promotions.$.status': 'shared', 'promotions.$.sharedDate': new Date()}}
-
+		catch e
+			throw e
 
 

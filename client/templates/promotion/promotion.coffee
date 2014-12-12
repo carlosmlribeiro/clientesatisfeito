@@ -24,13 +24,12 @@ Template.promotion.events
 		$("#complain").attr 'disabled','disabled'
 		Meteor.call "sharePromotion", @campaign._id, @promotionId, $('#comment').val(), @promotion.imageURL, (err, result) ->
 			if err
-				throwError 'Ocorreu um erro! A sua mensagem não foi partilhada!', "danger"
+				throwError 'Ocorreu um erro! A sua mensagem não foi partilhada! (' + err.message + ')', "danger"
 				$("#btnText").text 'Partilhar no Facebook'
 				$("#share").removeAttr 'disabled'
+				$("#complain").removeAttr 'disabled'
 			else
 				$("#btnText").text 'Partilhado'
-
-
 
 	'click #complain': (e, tmpl) ->
 		#todo
