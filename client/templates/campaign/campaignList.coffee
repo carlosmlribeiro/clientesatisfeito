@@ -3,7 +3,7 @@ campaignCreated = false
 
 Template.campaignList.helpers
 	campaign: () ->
-		Campaign.find()
+		Campaign.find {}, {sort: {'created': -1}}
 
 Template.campaignList.events
 	'click #createCampaign': (e, tmpl) ->
@@ -17,6 +17,9 @@ Template.campaignList.events
 				description: $('#campaignDescription').val(),
 				type: "offer"
 				promotions: []
+				claims: 0
+				complains: 0
+				shares: 0
 			campaign._id = Campaign.insert campaign
 			campaignCreated = true
 		else
@@ -27,6 +30,7 @@ Template.campaignList.events
 		$('#campaignNameGroup').removeClass("has-error")
 		$('#helpBlock').text("")
 		$('#campaignName').val("")
+		$('#campaignDescription').val("")
 		if campaignCreated
 			campaignCreated = false
 

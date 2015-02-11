@@ -2,6 +2,7 @@ Template.addCustomerModal.events
 	'click .addCustomerBtn': (e, tmpl) ->
 		e.preventDefault()
 		campaignId = @_id
+		offerDesc = @description
 		customerEmail = $('#addCustomer'+@_id).val()
 		$('#addCustomerBtn'+campaignId).text('A adicionar...')
 		$('#addCustomerBtn'+campaignId).attr('disabled','disabled');
@@ -16,7 +17,7 @@ Template.addCustomerModal.events
 					if result
 						$('#newCustomer'+campaignId).modal('hide')
 						#upsert customer
-						Meteor.call "createPromotionEmail", campaignId, customerEmail, (err, result) ->
+						Meteor.call "createPromotionEmail", campaignId, customerEmail, offerDesc, (err, result) ->
 							if err
 								$('#customerNameGroup'+campaignId).addClass("has-error")
 								$('#helpBlock'+campaignId).text(err.message)

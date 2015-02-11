@@ -5,6 +5,7 @@ ServiceConfiguration.configurations.insert
 	service: "facebook"
 	appId: process.env.FACEBOOK_APP_ID || Meteor.settings.FACEBOOK_APP_ID
 	secret: process.env.FACEBOOK_APP_SECRET || Meteor.settings.FACEBOOK_APP_SECRET
+	loginStyle: "redirect"
 
 Cloudinary.config
 	cloud_name: process.env.CLOUDINARY_CLOUD_NAME || Meteor.settings.CLOUDINARY_CLOUD_NAME

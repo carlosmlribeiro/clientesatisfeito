@@ -2,8 +2,8 @@ Template.promotion.helpers
 	isOwner: () ->
 		@promotion?.ownedBy is Meteor.userId()
 
-	isShared: () ->
-		@promotion.status is "shared"
+	isExpired: () ->
+		@promotion.status is "shared" or @promotion.status is "complain"
 
 Template.promotion.events
 	'click #login': (e, tmpl) ->
@@ -32,4 +32,17 @@ Template.promotion.events
 				$("#btnText").text 'Partilhado'
 
 	'click #complain': (e, tmpl) ->
-		#todo
+		e.preventDefault()
+		$("#share").attr 'disabled','disabled'
+		$("#complain").attr 'disabled','disabled'
+		if $('#comment').val()
+			Meteor.call "addComplain", @campaign._id, @promotionId, @promotion.account.id, $('#comment').val(), (err, result) ->
+				if err
+					throwError 'Ocorreu um erro! A sua mensagem não foi enviada! (' + err.message + ')', "danger"
+		else
+			throwError 'É necessário preencher uma mensagem para informar o vendedor porque não ficou satisfeito!', "danger"
+			$("#share").removeAttr 'disabled'
+			$("#complain").removeAttr 'disabled'
+
+Template.promotion.rendered = () ->
+	Holder.run()

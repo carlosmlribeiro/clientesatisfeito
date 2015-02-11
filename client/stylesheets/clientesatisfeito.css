@@ -298,14 +298,13 @@ h6 {
 
 .btn-circle {
     margin-top: 100px;
-    color: #F0F1F2;
+    color: #FF5629;
     text-shadow: 1px 1px 2px rgba(0,0,0,0.6);
 }
 
 .btn-circle:hover,
 .btn-circle:focus {
-    color: #647362;
-    text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+    color: #FF5629;
 }
 
 .step-by-step {
@@ -498,6 +497,101 @@ span#errormsg {
   font-size: 18px;
   line-height: 1.33;
   border-radius: 25px;
+}
+
+/* Wobble Vertical */
+@-webkit-keyframes wobble-vertical {
+  16.65% {
+    -webkit-transform: translateY(8px);
+    transform: translateY(8px);
+  }
+ 
+  33.3% {
+    -webkit-transform: translateY(-6px);
+    transform: translateY(-6px);
+  }
+ 
+  49.95% {
+    -webkit-transform: translateY(4px);
+    transform: translateY(4px);
+  }
+ 
+  66.6% {
+    -webkit-transform: translateY(-2px);
+    transform: translateY(-2px);
+  }
+ 
+  83.25% {
+    -webkit-transform: translateY(1px);
+    transform: translateY(1px);
+  }
+ 
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+}
+ 
+@keyframes wobble-vertical {
+  16.65% {
+    -webkit-transform: translateY(8px);
+    transform: translateY(8px);
+  }
+ 
+  33.3% {
+    -webkit-transform: translateY(-6px);
+    transform: translateY(-6px);
+  }
+ 
+  49.95% {
+    -webkit-transform: translateY(4px);
+    transform: translateY(4px);
+  }
+ 
+  66.6% {
+    -webkit-transform: translateY(-2px);
+    transform: translateY(-2px);
+  }
+ 
+  83.25% {
+    -webkit-transform: translateY(1px);
+    transform: translateY(1px);
+  }
+ 
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+}
+
+.wobble-vertical {
+  display: inline-block;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+}
+.wobble-vertical:hover, .wobble-vertical:focus, .wobble-vertical:active {
+  -webkit-animation-name: wobble-vertical;
+  animation-name: wobble-vertical;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-timing-function: ease-in-out;
+  animation-timing-function: ease-in-out;
+  -webkit-animation-iteration-count: 1;
+  animation-iteration-count: 1;
+}
+
+.promo-heading {
+    min-height: 70px;
+    background-color: #F0F1F2 !important;
+}
+
+.promo-panel {
+    border-color: #F0F1F2 !important;
+}
+
+.promo-well {
+    background-color: #D2D9B8 !important;
 }
 
 /* Fonts

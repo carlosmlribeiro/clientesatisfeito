@@ -58,9 +58,7 @@ Router.map ->
 	@route 'promotion',
 		path: '/campaign/:campaignId/promotion/:_id',
 		waitOn: ->
-			Meteor.subscribe "promotion", @params._id, Meteor.userId()
-			Meteor.subscribe "promotionOwner", @params._id
-			Meteor.subscribe "campaign", @params.campaignId,
+			[Meteor.subscribe("promotion", @params._id, Meteor.userId()), Meteor.subscribe("promotionOwner", @params._id), Meteor.subscribe("campaign", @params.campaignId)]
 		data: ->
 			campaign: Campaign.findOne @params.campaignId
 			promotion: Promotion.findOne @params._id
@@ -139,7 +137,7 @@ Router.onBeforeAction () ->
 	@next()
 
 Router.onBeforeAction 'dataNotFound', 
-	only: ['campaign','promotion']
+	only: ['campaign', 'promotion']
 Router.onBeforeAction 'loading',
 	except: 'mailgun'
 Router.onBeforeAction requireLogin, 

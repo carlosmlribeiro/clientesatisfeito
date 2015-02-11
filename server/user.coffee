@@ -65,6 +65,7 @@ Meteor.methods
 	        		account.referral = user.profile.referral
 	        		account.posts = []
 	        		account.numRef = 0
+	        		account.messages = []
 
 	        		Account.insert account
 	        	else

@@ -13,7 +13,12 @@
 	                    <input type="email" class="form-control addCustomer" id="addCustomer{{_id}}" placeholder="Insira o email do cliente" autofocus>
 	                    <span id="helpBlock{{_id}}" class="help-block">O cliente será informado por email para a sua participação na campanha</span>
 	                </div>
-	              </div>
+	                <div class="form-group">
+					    <label for="exampleInputFile">Imagem</label>
+					    <input type="file" id="exampleInputFile" disabled>
+					    <p class="help-block">Adicione a foto do cliente - <i>esta opção está disponível apenas o nível premium</i></p>
+					</div>
+				  </div>
 	              <div class="modal-footer">
 	                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
 	                <button type="submit" id="addCustomerBtn{{_id}}" class="btn btn-success addCustomerBtn">OK</button>

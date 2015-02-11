@@ -42,3 +42,15 @@ Meteor.methods
 			throw new Meteor.Error e.response.statusCode, e.response.data.error.message, "danger"
 
 		result.data.id
+
+	confirmPromotion: (postId, userToken) ->
+		@unblock
+
+		try
+			result = Meteor.http.get "https://graph.facebook.com/v2.1/" + postId,
+			params:
+				access_token: userToken
+		catch e
+			throw new Meteor.Error e.response.statusCode, e.response.data.error.message, "danger"
+
+		result.data.id?

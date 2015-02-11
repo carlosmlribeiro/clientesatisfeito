@@ -7,16 +7,16 @@ Meteor.publish "promotion", (promotionId, userId) ->
 
 Meteor.publish "promotionOwner", (promotionId) ->
 	Promotion.find {_id: promotionId},
-        {fields: {'ownedBy': 1}}
+        {fields: {'ownedBy': 1, 'account': 1}}
 
 Meteor.publish "allAccounts", () ->
 	Account.find {}
-
+	
 Meteor.publish "allUsers", () ->
 	Meteor.users.find {}
-
+	
 Meteor.publish "myCampaigns", (id) ->
-	Campaign.find {accountId: id}
+	Campaign.find {accountId: id}, {sort: {created: -1}}
 
 Meteor.publish "campaign", (id) ->
 	Campaign.find {_id: id}

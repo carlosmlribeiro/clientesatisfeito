@@ -8,7 +8,7 @@
                   <span class="artst-plus"><a href="#"><p><i class="glyphicon glyphicon-camera"></i></p><p>mudar fotografia</p></a></span>
                   <a href="#" data-toggle='modal' data-target='#newPicture{{_id}}' >
                       {{#if imageId}}
-                          <img src="{{c.url imageId width=140 height=140 crop='lfill' gravity='center'}}">
+                          <img class="media-object img-rounded" src="{{c.url imageId width=140 height=140 crop='lfill' gravity='center'}}">
                       {{else}}
                           <img class="media-object img-rounded" src="http://cdn.clientesatisfeito.pt/img/logo140.jpg" alt="" />
                       {{/if}}
@@ -18,7 +18,7 @@
           <div class="media-body">
               <h4 class="media-heading">{{name}}</h4>
               <p><div id="profileName" contenteditable="true">{{description}}</div></p>
-              <p><i class="glyphicon glyphicon-user"></i> {{promotions.length}} <i class="glyphicon glyphicon-gift"></i> 0 <i class="glyphicon glyphicon-share"></i> 0 </p>
+              <p><i class="glyphicon glyphicon-user"></i> {{promotions.length}} <i class="glyphicon glyphicon-gift"></i> {{claims}} <i class="glyphicon glyphicon-share"></i> {{shares}} <i class="glyphicon glyphicon-warning-sign"></i> {{complains}} </p>
          </div>
       </div>
     </div>
@@ -29,7 +29,7 @@
     </div>
 </div>
   <!-- Modal -->
-  <div class="modal fade" id="newPicture{{_id}}" tabindex="-1" role="dialog" aria-labelledby="newPicture{{_id}}" aria-hidden="true">
+  <div class="modal fade new-picture" id="newPicture{{_id}}" tabindex="-1" role="dialog" aria-labelledby="newPicture{{_id}}" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">

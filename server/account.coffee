@@ -30,6 +30,9 @@ Meteor.methods
 
 	setToActive: (id) ->
 
-		Meteor.users.update {"_id": Meteor.userId(), "profile.accounts.id": id}, {"$set": {"profile.accounts.$.status": "active"}}
-		Meteor.users.update {"_id": Meteor.userId(), "accounts.id": id}, {"$set": {"accounts.$.status": "active"}}
+		#get userid from account creator
+		result = Account.findOne({"_id": id}, {fields: {_id:0, creator:1}})
+
+		Meteor.users.update {"_id": result.creator, "profile.accounts.id": id}, {"$set": {"profile.accounts.$.status": "active"}}
+		Meteor.users.update {"_id": result.creator, "accounts.id": id}, {"$set": {"accounts.$.status": "active"}}
 		Account.update {"_id": id}, {"$set": {"status": "active"}}
