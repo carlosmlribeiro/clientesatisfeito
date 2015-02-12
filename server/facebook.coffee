@@ -1,4 +1,5 @@
 facebookNS = process.env.FACEBOOK_NS || Meteor.settings.FACEBOOK_NS
+facebookURL = "https://graph.facebook.com/v2.2/"
 
 Meteor.methods
 	shareOnFacebook: (accountId, access_token, activationURL) ->
@@ -6,7 +7,7 @@ Meteor.methods
 		@unblock
 
 		try
-			result = Meteor.http.post "https://graph.facebook.com/v2.1/" + accountId + "/feed",
+			result = Meteor.http.post facebookURL + accountId + "/feed",
 			params:
 				access_token: access_token
 				link: activationURL
@@ -15,7 +16,7 @@ Meteor.methods
 				caption: 'O melhor vendedor é um cliente satisfeito'
 				description: 'Gestão de promoções e clientes. Façam dos vossos clientes, clientes satisfeitos!'
 		catch e
-			throw new Meteor.Error e.response.statusCode, e.response.data.error.message, "danger"
+			throw new Meteor.Error e.response.statusCode, e.response.data.error.error_user_msg, "danger"
 
 		Account.update {"_id": accountId}, {"$push": {"posts": result.data.id}}
 
@@ -36,10 +37,10 @@ Meteor.methods
 		params.offer = campaignURL #"http://samples.ogp.me/476432209161685"
 
 		try
-			result = Meteor.http.post "https://graph.facebook.com/v2.1/" + Meteor.user().profile.fbid + "/" + facebookNS + ":subscribe",
+			result = Meteor.http.post facebookURL + Meteor.user().profile.fbid + "/" + facebookNS + ":subscribe",
 			params: params
 		catch e
-			throw new Meteor.Error e.response.statusCode, e.response.data.error.message, "danger"
+			throw new Meteor.Error e.response.statusCode, e.response.data.error.error_user_msg, "danger"
 
 		result.data.id
 
@@ -47,10 +48,10 @@ Meteor.methods
 		@unblock
 
 		try
-			result = Meteor.http.get "https://graph.facebook.com/v2.1/" + postId,
+			result = Meteor.http.get facebookURL + postId,
 			params:
 				access_token: userToken
 		catch e
-			throw new Meteor.Error e.response.statusCode, e.response.data.error.message, "danger"
+			throw new Meteor.Error e.response.statusCode, e.response.data.error.error_user_msg, "danger"
 
 		result.data.id?
