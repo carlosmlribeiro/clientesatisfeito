@@ -27,7 +27,7 @@ Template.navbarUserMenu.events
 		if $(e.target).attr('disabled') is 'disabled'
 			e.preventDefault()
 		else
-			Meteor.users.update(Meteor.userId(), {$set: {'profile.admin': true, 'profile.activeAccount': {'id': $(e.target).attr('id'), 'name': $(e.target).attr('name')}}})
+			Meteor.users.update(Meteor.userId(), {$set: {'profile.admin': true, 'profile.activeAccount': {'id': $(e.target).attr('pageid'), 'name': $(e.target).attr('name')}}})
 
 	'click #customer-mode': (e,tmpl) ->
 		Meteor.users.update(Meteor.userId(), {$set: {'profile.admin': false}})

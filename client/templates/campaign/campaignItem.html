@@ -17,14 +17,14 @@
           </span>
           <div class="media-body">
               <h4 class="media-heading">{{name}}</h4>
-              <p><div id="profileName" contenteditable="true">{{description}}</div></p>
+              <p><div id="profileName">{{description}}</div></p>
               <p><i class="glyphicon glyphicon-user"></i> {{promotions.length}} <i class="glyphicon glyphicon-gift"></i> {{claims}} <i class="glyphicon glyphicon-share"></i> {{shares}} <i class="glyphicon glyphicon-warning-sign"></i> {{complains}} </p>
          </div>
       </div>
     </div>
     <div class="panel-footer">
       <div class="text-center">
-        <button type="button" id="campaignDetail" class="btn btn-default btn-circle-footer btn-lg"><i class="glyphicon glyphicon-signal"></i></button> <button type="button" data-toggle='modal' data-target='#newCustomer{{_id}}' class="btn btn-default btn-circle-footer btn-lg"><i class="glyphicon glyphicon-envelope"></i></button> <button type="button" class="btn btn-default btn-circle-footer btn-lg disabled"><i class="glyphicon glyphicon-qrcode"></i></button>
+        <button type="button" id="campaignDetail" class="btn btn-default btn-circle-footer btn-lg" title="Estatísticas"><i class="glyphicon glyphicon-signal"></i></button> <button type="button" data-toggle='modal' data-target='#newCustomer{{_id}}' class="btn btn-default btn-circle-footer btn-lg" title="Adicionar cliente via email"><i class="glyphicon glyphicon-envelope"></i></button> <button type="button" class="btn btn-default btn-circle-footer btn-lg disabled" title="Adicionar cliente via qr-code"><i class="glyphicon glyphicon-qrcode"></i></button><button type="button" class="btn btn-default btn-circle-footer btn-lg disabled" title="Adicionar cliente via SMS"><i class="glyphicon glyphicon-phone"></i></button>
       </div>
     </div>
 </div>
@@ -36,13 +36,13 @@
             <h4 class="modal-title" id="newPicture{{_id}}">Seleccione o ficheiro</h4>
           </div>
           <div class="modal-body">
-            <p>{{#c_upload_stream callback="save_url"}}
-                <input type="file">
-            {{/c_upload_stream}}</p>
+            <p>{{#c_clientside_upload}}
+                <input name="file" type="file" data-meta='campaignId:{{_id}}' data-preset='vwabzhaj'>
+            {{/c_clientside_upload}}</p>
             {{#each c.uploading_images}}
                 <p><div class="progress">
-                  <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="{{percent_uploaded}}" aria-valuemin="0" aria-valuemax="100" style="width: {{percent_uploaded}}%">
-                    <span class="sr-only">{{percent_uploaded}}% Complete</span>
+                  <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="{{percent_uploaded}}" aria-valuemin="0" aria-valuemax="100" style="width: {{myProgress progress}}%">
+                    <span class="sr-only">{{myProgress progress}}% Complete</span>
                   </div>
                 </div></p>
             {{/each}}

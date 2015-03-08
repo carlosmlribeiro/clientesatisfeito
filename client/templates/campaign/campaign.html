@@ -35,7 +35,13 @@
 			              		<div class="media-body">
 			                        <div>
 			                      		<h4 class="media-heading"><strong>{{name}}</strong></h4>
-			              				<h5 class="media-heading">{{description}}</h5>
+			              				<h5 class="media-heading">
+			              					{{#if description}}
+			              						{{description}}
+			              					{{else}}
+			              						&nbsp;
+			              					{{/if}}
+			              				</h5>
 			                        </div>
 			              		</div>
 			          		</div>
@@ -75,7 +81,7 @@
 	            </div>
 			</div>
 		</div>
-		<!-- Modal -->
+		<!-- 
 		<div class="modal fade" id="newPicture{{_id}}" tabindex="-1" role="dialog" aria-labelledby="newPicture{{_id}}" aria-hidden="true">
 		  <div class="modal-dialog">
 		    <div class="modal-content">
@@ -83,9 +89,9 @@
 		        <h4 class="modal-title" id="newPicture{{_id}}">Seleccione a imagem</h4>
 		      </div>
 		      <div class="modal-body">
-		        <p>{{#c_upload_stream callback="save_url"}}
-		            <input type="file">
-		        {{/c_upload_stream}}</p>
+		        <p>{{#c_clientside_upload}}
+		            <input type="file" data-meta='role:myRole' data-preset='thePresetName'>
+		        {{/c_clientside_upload}}</p>
 		        {{#each c.uploading_images}}
 		            <p><div class="progress">
 		              <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="{{percent_uploaded}}" aria-valuemin="0" aria-valuemax="100" style="width: {{percent_uploaded}}%">
@@ -99,7 +105,7 @@
 		      </div>
 		    </div>
 		  </div>
-		</div>
+		</div>Modal -->
 		{{> addCustomerModal}}	
 	{{else}}
 	<div id="container-index" style="background-color:#fff;">

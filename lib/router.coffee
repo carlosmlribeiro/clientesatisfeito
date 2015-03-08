@@ -130,10 +130,7 @@ requireUnknown = () ->
 
 Router.onBeforeAction () ->
 	if @params.query?.ref
-		d = new Date
-		d.setTime(d.getTime() + (1*24*60*60*1000));
-		expires = "expires="+d.toUTCString();
-		document.cookie = "ref=" + @params.query.ref + "; " + expires
+		Session.setDefault "ref", @params.query?.ref
 	@next()
 
 Router.onBeforeAction 'dataNotFound', 

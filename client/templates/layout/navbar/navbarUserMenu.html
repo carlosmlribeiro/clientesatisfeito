@@ -20,7 +20,7 @@
                         {{#each currentUser.profile.accounts}}
                             {{#unless isActiveAccount id}}
                                 {{#unless isInactive status}}
-                                    <li class="{{getClass status}} set-admin"><a id="{{id}}" name="{{name}}" disabled="{{getClass status}}"><img src="http://graph.facebook.com/{{id}}/picture" height="18" width="18" class="img-rounded" alt="Profile Picture"> {{name}}</a></li>
+                                    <li class="{{getClass status}} set-admin"><a pageid="{{id}}" name="{{name}}" disabled="{{getClass status}}"><img src="http://graph.facebook.com/{{id}}/picture" height="18" width="18" class="img-rounded" pageid="{{id}}" name="{{name}}" disabled="{{getClass status}}" alt="Profile Picture"> {{name}}</a></li>
                                 {{/unless}}
                             {{/unless}}
                         {{/each}}

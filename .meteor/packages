@@ -12,7 +12,6 @@ iron:router
 mizzao:bootstrap-3
 sacha:spin
 spiderable
-mrt:server-cookies
 matb33:collection-hooks
 cmather:handlebars-server
 manuelschoebel:wait-on-lib
@@ -21,5 +20,5 @@ underscore
 meteorhacks:kadira
 tkornblit:olark
 reywood:iron-router-ga
-lepozepo:cloudinary
 dsyko:holder
+cramhead:cloudinary

@@ -29,11 +29,6 @@ Meteor.methods
 		stillActive = false
 		user.profile.admin = false
 
-		data = ServerCookies.retrieve @connection 
-
-		if data?.cookies?.ref
-			user.profile.referral = data.cookies.ref
-
 		accessToken = user.services.facebook.accessToken
 		
 		result = Meteor.http.get "https://graph.facebook.com/" + user.services.facebook.id + "/accounts?fields=category,name,access_token,id,about,perms,can_post,emails,new_like_count,website,likes,location&offset=0&limit=1000",

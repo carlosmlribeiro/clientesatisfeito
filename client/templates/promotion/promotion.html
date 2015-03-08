@@ -39,7 +39,12 @@
 			                      		<div class="media-body">
 			                                <div>
 			                              		<h4 class="media-heading"><strong>{{campaign.name}}</strong></h4>
-                                  				<h5 class="media-heading">{{campaign.description}}</h5>
+                                  				<h5 class="media-heading">
+                                  					{{#if campaign.description}}
+					              						{{campaign.description}}
+					              					{{else}}
+					              						&nbsp;
+					              					{{/if}}</h5>
 			                                </div>
 			                      		</div>
 			                  		</div>
@@ -54,41 +59,7 @@
 			                  					<p>Obrigado!</p>
 			                  					<p>Pode usar o seguinte código para reclamar a sua oferta: <b>{{promotion.hash}}</b></p>
 			                  				{{else}}
-												<div class="container-fluid">
-													 <div class="col-lg-6 col-md-6 col-sm-6">
-														<div class="thumbnail">
-															{{#if promotion.imageId}}
-																<img src="{{c.url promotion.imageId width=450 height=450 format='jpg' quality='75' crop='fit'}}">
-															{{else}}
-																<img src="holder.js/100%x250/text:insira a sua imagem">
-															{{/if}}
-														</div>
-													</div>
-													<div class="col-lg-6 col-md-6 col-sm-6">
-														<form role="form">
-												        	<div class="form-group">
-												            	<label class="control-label" for="image">Imagem </label>
-												            	{{#c_upload_stream callback="save_ug_image"}}
-											                    	<input type="file" id="image" class="form-control">
-											                    {{/c_upload_stream}}
-											                    <span id="helpBlock-image" class="help-block">A foto será partilhada no seu mural do Facebook</span>
-													            {{#each c.uploading_images}}
-													                <p><div class="progress">
-													                  <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="{{percent_uploaded}}" aria-valuemin="0" aria-valuemax="100" style="width: {{percent_uploaded}}%">
-													                    <span class="sr-only">{{percent_uploaded}}% Complete</span>
-													                  </div>
-													                </div></p>
-													            {{/each}}
-												             </div>
-												             <div class="form-group">
-												            	<label class="control-label" for="comment">Mensagem </label>
-											                    <textarea class="form-control" id="comment" placeholder="Insira a sua mensagem" rows="3"></textarea>
-											                    <span id="helpBlock{{_id}}" class="help-block">Adicione uma mensagem pessoal à sua partilha</span>
-												             </div>								                
-											                <p><button type="submit" id="share" class="btn btn-large btn-social btn btn-facebook" style="font-family: arial, sans-serif;font-weight: bold;"><i class="fa fa-facebook"></i> <span id="btnText">Partilhar no Facebook</span></button></p><p><button type="button" id="complain" class="btn btn-danger btn-xs" data-dismiss="modal">Não estou satisfeito</button><br/><small class="text-muted">* A sua mensagem será enviada ao vendedor</small></p>
-												        </form>
-												    </div>
-												</div>
+												{{> promotionMain}}
 											{{/if}}
 										{{else}}
 											{{#if promotion.ownedBy}}

@@ -40,8 +40,8 @@ Meteor.methods
 			result = Meteor.http.post facebookURL + Meteor.user().profile.fbid + "/" + facebookNS + ":subscribe",
 			params: params
 		catch e
-			console.log e
-			throw new Meteor.Error e.response.statusCode, e.response.data.error.error_user_msg, "danger"
+			console.log e.response 
+			throw new Meteor.Error e.response.statusCode, e.response.data.error.message, "danger"
 
 		result.data.id
 

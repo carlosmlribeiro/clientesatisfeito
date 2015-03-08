@@ -9,7 +9,7 @@ Template.profileAccount.events
     'click .activatePage': (e, tmpl) ->
         $(e.target).attr('disabled','disabled');
         id = @id
-        Meteor.call "activateAccount", id, (err, result) ->
+        Meteor.call "activateAccount", id, Session.get("ref"), (err, result) ->
             if err
                 throwError err.message, err.details
             if result is 'pending'

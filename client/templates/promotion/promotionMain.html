@@ -1,0 +1,37 @@
+<template name="promotionMain">
+	<div class="container-fluid">
+		 <div class="col-lg-6 col-md-6 col-sm-6">
+			<div class="thumbnail">
+				{{#if promotion.imageId}}
+					<img src="{{c.url promotion.imageId width=450 height=450 format='jpg' quality='75' crop='fit'}}">
+				{{else}}
+					<img src="holder.js/100%x250/text:insira a sua imagem">
+				{{/if}}
+			</div>
+		</div>
+		<div class="col-lg-6 col-md-6 col-sm-6">
+			<form role="form">
+	        	<div class="form-group">
+	            	<label class="control-label" for="image">Imagem </label>
+	            	{{#c_clientside_upload}}
+		                <input name="file" type="file" class="form-control" data-meta='promotionId:{{promotion._id}}' data-preset='vwabzhaj'>
+		            {{/c_clientside_upload}}
+		            <span id="helpBlock-image" class="help-block">A foto será partilhada no seu mural do Facebook</span>
+		            {{#each c.uploading_images}}
+		                <p><div class="progress">
+		                  <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="{{percent_uploaded}}" aria-valuemin="0" aria-valuemax="100" style="width: {{myProgress progress}}%">
+		                    <span class="sr-only">{{myProgress progress}}% Complete</span>
+		                  </div>
+		                </div></p>
+		            {{/each}}
+	             </div>
+	             <div class="form-group">
+	            	<label class="control-label" for="comment">Mensagem </label>
+	                <textarea class="form-control" id="comment" placeholder="Insira a sua mensagem" rows="3"></textarea>
+	                <span id="helpBlock{{_id}}" class="help-block">Adicione uma mensagem pessoal à sua partilha</span>
+	             </div>								                
+	            <p><button type="submit" id="share" class="btn btn-large btn-social btn btn-facebook" style="font-family: arial, sans-serif;font-weight: bold;"><i class="fa fa-facebook"></i> <span id="btnText">Partilhar no Facebook</span></button></p><p><button type="button" id="complain" class="btn btn-danger btn-xs" data-dismiss="modal">Não estou satisfeito</button><br/><small class="text-muted">* A sua mensagem será enviada ao vendedor</small></p>
+	        </form>
+	    </div>
+	</div>
+</template>
