@@ -24,7 +24,7 @@
     </div>
     <div class="panel-footer">
       <div class="text-center">
-        <button type="button" id="campaignDetail" class="btn btn-default btn-circle-footer btn-lg" title="Estatísticas"><i class="glyphicon glyphicon-signal"></i></button> <button type="button" data-toggle='modal' data-target='#newCustomer{{_id}}' class="btn btn-default btn-circle-footer btn-lg" title="Adicionar cliente via email"><i class="glyphicon glyphicon-envelope"></i></button> <button type="button" class="btn btn-default btn-circle-footer btn-lg disabled" title="Adicionar cliente via qr-code"><i class="glyphicon glyphicon-qrcode"></i></button><button type="button" class="btn btn-default btn-circle-footer btn-lg disabled" title="Adicionar cliente via SMS"><i class="glyphicon glyphicon-phone"></i></button>
+        <button type="button" id="campaignDetail" class="btn btn-default btn-circle-footer btn-lg" title="Estatísticas"><i class="glyphicon glyphicon-signal"></i></button> <button type="button" data-toggle='modal' data-target='#newCustomer{{_id}}' class="btn btn-default btn-circle-footer btn-lg" title="Adicionar cliente via email"><i class="glyphicon glyphicon-envelope"></i></button> <button type="button" class="btn btn-default btn-circle-footer btn-lg" title="Adicionar cliente via qr-code" id="createCampaignQR"><i class="glyphicon glyphicon-qrcode"></i></button><button type="button" class="btn btn-default btn-circle-footer btn-lg disabled" title="Adicionar cliente via SMS"><i class="glyphicon glyphicon-phone"></i></button>
       </div>
     </div>
 </div>
@@ -55,4 +55,5 @@
     </div>
   </div>
   {{> addCustomerModal}}
+  {{> qrConfirmation}}
 </template>

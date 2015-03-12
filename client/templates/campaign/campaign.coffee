@@ -11,3 +11,6 @@ Template.campaign.helpers
             "Cliente Satisfeito"
         else
             'Cliente Não Satisfeito'
+
+    isAdmin: () ->
+        Meteor.user()?.profile?.admin

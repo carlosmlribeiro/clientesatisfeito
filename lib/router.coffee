@@ -8,7 +8,9 @@ Router.map ->
 	@route 'index',
 		path: '/'
 
-	@route 'home'
+	@route 'home',
+		waitOn: ->
+			Meteor.subscribe 'publicCampaigns'
 
 	@route 'profile',
 		waitOn: ->

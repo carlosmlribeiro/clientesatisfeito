@@ -292,10 +292,6 @@ h6 {
     min-height: 350px;
 }
 
-.thumbnail img {
-    width: 100%;
-}
-
 .btn-circle {
     margin-top: 100px;
     color: #FF5629;
@@ -592,6 +588,10 @@ span#errormsg {
 
 .promo-well {
     background-color: #D2D9B8 !important;
+}
+
+.row-top-button {
+    margin-bottom: 20px;
 }
 
 /* Fonts

@@ -1,0 +1,19 @@
+<template name="qrscanner">
+	<div class="modal fade" id="qrModal" tabindex="-1" role="dialog" aria-labelledby="qrModal" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+	        <h4 class="modal-title" id="pendingWarning">Código QR</h4>
+	      </div>
+	      <div class="modal-body">
+	        <p>{{> qrScanner}}</p>
+	        <p><i><small>* Disponível em Chrome e Firefox. Em alternativa use um programa para scan de códigos QR (<a href="https://itunes.apple.com/pt/app/qr-reader-for-iphone/id368494609?mt=8&uo=4" target="itunes_store">iTunes Store</a>).</small></i></p>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" data-dismiss="modal" class="btn btn-default">Fechar</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+</template>

@@ -14,7 +14,7 @@
 
             <div class="row voffset">
             	<div class="col-lg-12">
-					<button type="button" data-toggle='modal' data-target='#newCampaign' class="btn btn-success">Nova campanha</button>
+					<button type="button" data-toggle='modal' data-target='#newCampaign' class="btn btn-lg btn-success"><i class="glyphicon glyphicon-plus"></i> Nova campanha</button>
 				</div>
 			</div>
             
@@ -47,7 +47,7 @@
                     <span id="helpBlock" class="help-block"></span>
                 </div>
                 <div id="campaignDescriptionGroup" class="form-group">
-                    <label class="control-label" for="campaignDescription">História </label>
+                    <label class="control-label" for="campaignHistory">História </label>
                     <select class="form-control" disabled>
                       <option>[nome do cliente] subscreveu uma oferta na [sua página] usando o Cliente Satisfeito</option>
                     </select>
@@ -56,9 +56,17 @@
                 <div class="form-group">
                     <div class="checkbox">
                         <label>
-                          <input type="checkbox" disabled> Obrigatório gostar da sua Página
+                          <input type="checkbox" id="campaignPublic" disabled> Obrigatório gostar da sua Página
                         </label>
                         <p class="help-block"><i>Esta opção está disponível apenas para pioneiros</i></p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="checkbox">
+                        <label>
+                          <input type="checkbox" checked> Campanha pública
+                        </label>
+                        <p class="help-block"><i>Permite que apareça na lista de campanhas a todos os Clientes Satisfeitos</i></p>
                     </div>
                 </div>
                 <!--<div class="form-group">

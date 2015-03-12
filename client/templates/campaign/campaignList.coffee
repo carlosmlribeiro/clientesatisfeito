@@ -12,9 +12,11 @@ Template.campaignList.events
 		if campaignName isnt ""
 			$('#newCampaign').modal('hide')
 			campaign =
-				name: campaignName,
-				accountId: Meteor.user().profile.activeAccount.id,
-				description: $('#campaignDescription').val(),
+				name: campaignName
+				accountId: Meteor.user().profile.activeAccount.id
+				accountName: Meteor.user().profile.activeAccount.name
+				description: $('#campaignDescription').val()
+				public: $('#campaignPublic').val()
 				type: "offer"
 				promotions: []
 				claims: 0

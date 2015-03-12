@@ -1,6 +1,6 @@
 <template name="home">
   
-    <div id="container-index">
+    <div id="container-index" style="background-color:#fff;">
 
       <div class="container-fluid">
 
@@ -11,46 +11,60 @@
                       Campanhas <small>Todas as campanhas</small>
                   </h1>
 
+                  <div class="row">        
+                    <div class="col-xs-12 col-sm-2 col-md-3">
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-md-3 row-top-button">
+                      <button type="button" data-toggle='modal' data-target='#qrModal' class="btn btn-default btn-lg btn-block btn-success"><i class="glyphicon glyphicon-qrcode"></i> Tenho um código QR</button>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-md-3 row-top-button">
+                      <button type="button" data-toggle='modal' data-target='#smsModal' class="btn btn-default btn-lg btn-block btn-success disabled"><i class="glyphicon glyphicon-phone"></i> Tenho um código SMS</button>
+                    </div>
+                    <div class="col-xs-12 col-sm-2 col-md-3">
+                    </div>
+                  </div>            
+
                    <div class="row">
-                      <div class="col-xs-12 col-sm-4 col-md-3 campaign">
-                        <div class="panel panel-default thumbnail">                                    
-                          <img src="/img/campaign1.png" alt="">
-                            <div class="caption">
-                              <h4>Novo Peugeot 308</h4>
-                              <p>Oferecemos um check-up após 5000Km aos clientes satisfeitos</p>
+                      {{#each campaign}}
+                        <div class="col-xs-12 col-sm-4 col-md-3 campaign">
+                          <div class="panel panel-default thumbnail"> 
+                            <div class="panel-heading">
+                              <div class="media">
+                                <span class="pull-left">
+                                    <img class="media-object img-rounded" src="http://graph.facebook.com/{{accountId}}/picture" width='35' height=35 alt="{{accountId}} profile picture">
+                                </span>
+                                <div class="media-body">
+                                      <div>
+                                        <p>{{accountName}}</p>
+                                      </div>
+                                </div>
+                              </div>
                             </div>
-                          <div class="panel-footer">
-                            <div class="text-center"><a href="#" class="btn btn-info btn-xs" role="button">Mais informações</a></div>
+                                                             
+                            {{#if imageId}}
+                                  <img src="{{c.url imageId width=300 height=150 crop='lfill' gravity='center'}}">
+                              {{else}}
+                                  <img src="http://cdn.clientesatisfeito.pt/img/defCampLogo.jpg" width="300" height="150" alt="" />
+                              {{/if}}
+                              <div class="caption" style="min-height:130px;">
+                                
+                                <h4>{{name}}</h4>
+                                <p>{{description}}</p>
+                              </div>
+                            <div class="panel-footer">
+                              <div class="text-center"><a href="{{pathFor 'campaign'}}" class="btn btn-info btn-xs" role="button">Mais informações</a></div>
+                            </div>
                           </div>
                         </div>
-                      </div>
+                      {{/each}}
 
-                      <div class="col-xs-12 col-sm-4 col-md-3 campaign">
-                        <div class="panel panel-default thumbnail">                                    
-                          <img src="http://placehold.it/300x150" alt="">
-                            <div class="caption">
-                              <h4>Thumbnail label</h4>
-                              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                            </div>
-                          <div class="panel-footer">
-                            <div class="text-center"><a href="#" class="btn btn-info btn-xs" role="button">Mais informações</a></div>
-                          </div>
+                      {{#if noCampaigns}}
+                        <div class="col-xs-12 col-sm-12 col-md-12" style="padding-bottom:50px;">
+                          <p><h3><center>Ainda não há campanhas públicas disponíveis no Cliente Satisfeito. Fale da aplicação aos seus amigos para poder, em breve, ser um Cliente Satisfeito.</center></h3></p>
                         </div>
-                      </div>
+                      {{/if}}
 
-                      <div class="col-xs-12 col-sm-4 col-md-3 campaign">
-                        <div class="panel panel-default thumbnail">                                    
-                          <img src="http://placehold.it/300x150" alt="">
-                            <div class="caption">
-                              <h4>Thumbnail label</h4>
-                              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                            </div>
-                          <div class="panel-footer">
-                            <div class="text-center"><a href="#" class="btn btn-info btn-xs" role="button">Mais informações</a></div>
-                          </div>
-                        </div>
-                      </div>
-
+                      <!--
                       <div class="col-xs-12 col-sm-4 col-md-3 campaign">
                         <div class="thumbnail">
                           <img src="https://storage.googleapis.com/support-kms-prod/SNP_2922281_en_v1" alt="">
@@ -59,72 +73,10 @@
                           </div>
                         </div>
                       </div>
+                      -->
 
-                      <div class="col-xs-12 col-sm-4 col-md-3 campaign">
-                        <div class="panel panel-default thumbnail">                                    
-                          <img src="http://placehold.it/300x150" alt="">
-                            <div class="caption">
-                              <h4>Thumbnail label</h4>
-                              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                            </div>
-                          <div class="panel-footer">
-                            <div class="text-center"><a href="#" class="btn btn-info btn-xs" role="button">Mais informações</a></div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="col-xs-12 col-sm-4 col-md-3 campaign">
-                        <div class="panel panel-default thumbnail">                                    
-                          <img src="http://placehold.it/300x150" alt="">
-                            <div class="caption">
-                              <h4>Thumbnail label</h4>
-                              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                            </div>
-                          <div class="panel-footer">
-                            <div class="text-center"><a href="#" class="btn btn-info btn-xs" role="button">Mais informações</a></div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="col-xs-12 col-sm-4 col-md-3 campaign">
-                        <div class="panel panel-default thumbnail">                                    
-                          <img src="http://placehold.it/300x150" alt="">
-                            <div class="caption">
-                              <h4>Thumbnail label</h4>
-                              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                            </div>
-                          <div class="panel-footer">
-                            <div class="text-center"><a href="#" class="btn btn-info btn-xs" role="button">Mais informações</a></div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="col-xs-12 col-sm-4 col-md-3 campaign">
-                        <div class="panel panel-default thumbnail">                                    
-                          <img src="http://placehold.it/300x150" alt="">
-                            <div class="caption">
-                              <h4>Thumbnail label</h4>
-                              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                            </div>
-                          <div class="panel-footer">
-                            <div class="text-center"><a href="#" class="btn btn-info btn-xs" role="button">Mais informações</a></div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="col-xs-12 col-sm-4 col-md-3 campaign">
-                        <div class="thumbnail">
-                          <img src="https://storage.googleapis.com/support-kms-prod/SNP_2922281_en_v1" alt="">
-                          <div class="panel-footer">
-                            <div class="text-center">PUB</div>
-                          </div>
-                        </div>
-                      </div>
-                      
                     </div><!-- End row -->
-              
-
-                  
+                                
               </div>
           </div>
           <!-- /.row -->
@@ -133,4 +85,6 @@
       <!-- /#container -->
   </div>
   <!-- /#container -->
+  {{> qrscanner}}
+  {{> smscode}}
 </template>

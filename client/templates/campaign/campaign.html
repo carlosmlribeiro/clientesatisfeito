@@ -59,6 +59,7 @@
 	                            <tbody>
 	                            	{{#each promotions}}
 		                                <tr>
+		                                	<td>{{name}}</td>
 		                                    <td>{{email}}</td>
 		                                    <td>{{translateStatus status}}</td>
 		                                    <td>{{hash}}</td>
@@ -81,66 +82,89 @@
 	            </div>
 			</div>
 		</div>
-		<!-- 
-		<div class="modal fade" id="newPicture{{_id}}" tabindex="-1" role="dialog" aria-labelledby="newPicture{{_id}}" aria-hidden="true">
-		  <div class="modal-dialog">
-		    <div class="modal-content">
-		      <div class="modal-header">
-		        <h4 class="modal-title" id="newPicture{{_id}}">Seleccione a imagem</h4>
-		      </div>
-		      <div class="modal-body">
-		        <p>{{#c_clientside_upload}}
-		            <input type="file" data-meta='role:myRole' data-preset='thePresetName'>
-		        {{/c_clientside_upload}}</p>
-		        {{#each c.uploading_images}}
-		            <p><div class="progress">
-		              <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="{{percent_uploaded}}" aria-valuemin="0" aria-valuemax="100" style="width: {{percent_uploaded}}%">
-		                <span class="sr-only">{{percent_uploaded}}% Complete</span>
-		              </div>
-		            </div></p>
-		        {{/each}}
-		      </div>
-		      <div class="modal-footer">
-		        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-		      </div>
-		    </div>
-		  </div>
-		</div>Modal -->
 		{{> addCustomerModal}}	
 	{{else}}
-	<div id="container-index" style="background-color:#fff;">
-	    <div class="container-fluid"> 
+		{{#if isAdmin}}
+			<div id="container-admin">
+	        	<div class="container-fluid">
+			        <div class="row">
+			              <div class="col-lg-12">
+			                  <h1 class="page-header">
+			                        {{name}} <small>detalhe de campanha</small>
+			                    </h1>
+				        	</div>
+			            </div>
 
-	    	<div class="row">
-              <div class="col-lg-12">
-                  <h1 class="page-header">
-                        {{name}} <small>detalhe de campanha</small>
-                    </h1>
-	        	</div>
-            </div>
-
-            <div class="row">
-                <div class="col-lg-12">
-					<div class="well">
-					    <div class="media">
-		              		<span class="pull-left">
-		              			{{#if imageId}}
-		                          	<img class="media-object img-rounded" src="{{c.url imageId width=50 height=50 crop='lfill' gravity='center'}}">
-			                      {{else}}
-			                          <img class="media-object img-rounded" src="http://cdn.clientesatisfeito.pt/img/logo140.jpg" width="50" height="50" alt="" />
-			                      {{/if}}
-		              		</span>
-		              		<div class="media-body">
-		                        <div>
-		                      		<h4 class="media-heading"><strong>{{name}}</strong></h4>
-		              				<h5 class="media-heading">{{description}}</h5>
-		                        </div>
-		              		</div>
-		          		</div>
-		          	</div>
+			            <div class="row">
+			                <div class="col-lg-12">
+								<div class="well">
+								    <div class="media">
+					              		<span class="pull-left">
+					              			{{#if imageId}}
+					                          	<img class="media-object img-rounded" src="{{c.url imageId width=50 height=50 crop='lfill' gravity='center'}}">
+						                      {{else}}
+						                          <img class="media-object img-rounded" src="http://cdn.clientesatisfeito.pt/img/logo140.jpg" width="50" height="50" alt="" />
+						                      {{/if}}
+					              		</span>
+					              		<div class="media-body">
+					                        <div>
+					                      		<h4 class="media-heading"><strong>{{name}}</strong></h4>
+					              				<h5 class="media-heading">
+					              					{{#if description}}
+					              						{{description}}
+					              					{{else}}
+					              						&nbsp;
+					              					{{/if}}
+					              				</h5>
+					                        </div>
+					              		</div>
+					          		</div>
+					          	</div>
+							</div>
+					   	</div>
+					</div>
 				</div>
-		   	</div>
+		{{else}}
+			<div id="container-index" style="background-color:#fff;">
+	    		<div class="container-fluid"> 
+
+		    	<div class="row">
+	              <div class="col-lg-12">
+	                  <h1 class="page-header">
+	                        {{name}} <small>detalhe de campanha</small>
+	                    </h1>
+		        	</div>
+	            </div>
+
+	            <div class="row">
+	                <div class="col-lg-12">
+						<div class="well">
+						    <div class="media">
+			              		<span class="pull-left">
+			              			{{#if imageId}}
+			                          	<img class="media-object img-rounded" src="{{c.url imageId width=50 height=50 crop='lfill' gravity='center'}}">
+				                      {{else}}
+				                          <img class="media-object img-rounded" src="http://cdn.clientesatisfeito.pt/img/logo140.jpg" width="50" height="50" alt="" />
+				                      {{/if}}
+			              		</span>
+			              		<div class="media-body">
+			                        <div>
+			                      		<h4 class="media-heading"><strong>{{name}}</strong></h4>
+			              				<h5 class="media-heading">
+			              					{{#if description}}
+			              						{{description}}
+			              					{{else}}
+			              						&nbsp;
+			              					{{/if}}
+			              				</h5>
+			                        </div>
+			              		</div>
+			          		</div>
+			          	</div>
+					</div>
+			   	</div>
+			</div>
 		</div>
-	</div>
+		{{/if}}
 	{{/if}}
 </template>

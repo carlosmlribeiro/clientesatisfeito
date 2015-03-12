@@ -27,11 +27,12 @@ Meteor.methods
 
 		promotionURL = Meteor.absoluteUrl() + 'campaign/' + campaignId + '/promotion/' + promotionId
 
-		@unblock
-		#send email
-		Meteor.call 'sendEmail', "", email, 'promotionInvite', '', "Foi convidado para ser um Cliente Satisfeito", {url: promotionURL, accountName: user.profile.activeAccount.name, offerDesc: offerDesc}, user.profile.activeAccount.name + " convidou-o para ser um Cliente Satisfeito\n\nQueremos agradecer-lhe ser nosso Cliente e gostariamos de contar consigo para ser um embaixador da nossa marca.\n\nAceite a nossa oferta de " + offerDesc + " partilhando a sua experiência no seu Facebook.\n\nReclame a oferta seguindo este link: " + encodeURIComponent(promotionURL) + "\n\nEste link dá acesso à aplicação Cliente Satisfeito. Após login via Facebook poderá reclamar a oferta.\n\nNão se esqueçam de gostar da nossa página no Facebook para estarem a par das novidades: http://facebook.com/clientesatisfeito.pt", (err, result) ->
-			if err
-				console.log err
+		if email isnt ""
+			@unblock
+			#send email
+			Meteor.call 'sendEmail', "", email, 'promotionInvite', '', "Foi convidado para ser um Cliente Satisfeito", {url: promotionURL, accountName: user.profile.activeAccount.name, offerDesc: offerDesc}, user.profile.activeAccount.name + " convidou-o para ser um Cliente Satisfeito\n\nQueremos agradecer-lhe ser nosso Cliente e gostariamos de contar consigo para ser um embaixador da nossa marca.\n\nAceite a nossa oferta de " + offerDesc + " partilhando a sua experiência no seu Facebook.\n\nReclame a oferta seguindo este link: " + encodeURIComponent(promotionURL) + "\n\nEste link dá acesso à aplicação Cliente Satisfeito. Após login via Facebook poderá reclamar a oferta.\n\nNão se esqueçam de gostar da nossa página no Facebook para estarem a par das novidades: http://facebook.com/clientesatisfeito.pt", (err, result) ->
+				if err
+					console.log err
 
 		result =
 			id: promotionId
@@ -39,10 +40,11 @@ Meteor.methods
 			status: "created"
 			created: promotion.created
 			hash: promotion.hash
+			promotionURL: promotionURL
 
 	claimPromotion: (promotionId, campaignId) -> 
-		Promotion.update promotionId, {$set: {'ownedBy': Meteor.userId(), 'status': 'claimed'}}
-		Campaign.update {"_id": campaignId, "promotions.id": promotionId}, {$set: {'promotions.$.status': 'claimed', 'promotions.$.claimedDate': new Date()}, $inc: {'claims': 1}}
+		Promotion.update promotionId, {$set: {'ownedBy': Meteor.userId(), 'status': 'claimed', 'ownedByName': Meteor.user().profile.name}}
+		Campaign.update {"_id": campaignId, "promotions.id": promotionId}, {$set: {'promotions.$.status': 'claimed', 'promotions.$.claimedDate': new Date(), 'promotions.$.name': Meteor.user().profile.name}, $inc: {'claims': 1}}
 		#add customer
 
 	sharePromotion: (campaignId, promotionId, message, image) -> 

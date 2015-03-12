@@ -20,3 +20,6 @@ Meteor.publish "myCampaigns", (id) ->
 
 Meteor.publish "campaign", (id) ->
 	Campaign.find {_id: id}
+
+Meteor.publish "publicCampaigns", () ->
+	Campaign.find {public: 'on'}
