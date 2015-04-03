@@ -2,15 +2,26 @@
 	<div class="modal fade" id="qrModalConfirmation" tabindex="-1" role="dialog" aria-labelledby="qrModalConfirmation" aria-hidden="true">
 	  <div class="modal-dialog">
 	    <div class="modal-content">
-	      <div class="modal-header">
+	      <div class="modal-header no-print">
 	        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
 	        <h4 class="modal-title" id="pendingWarning">Código QR</h4>
 	      </div>
 	      <div class="modal-body">
+	      	<div class="print">
+	      		<center>
+	      			<p><img id="img" src="http://cdn.clientesatisfeito.pt/img/logo-orange.jpg"></p>
+	      			<p>Foi convidado para ser um Cliente Satisfeito.</p>
+	      		</center>
+	      	</div>
 	        <center><div id="qrCode"></div></center>
+	        <div class="print">
+	      		<center>
+	      			<p><i>* Faça o scan deste código com uma aplicação de códigos QR ou visite o site clientesatisfeito.pt</i></p>
+	      		</center>
+	      	</div>
 	      </div>
-	      <div class="modal-footer">
-	      	<button type="button" class="btn btn-default">Imprimir</button>
+	      <div class="modal-footer no-print">
+	      	<button type="button" id="print" class="btn btn-default">Imprimir</button>
 	        <button type="button" data-dismiss="modal" class="btn btn-default">Cliente Confirmado</button>
 	      </div>
 	    </div>

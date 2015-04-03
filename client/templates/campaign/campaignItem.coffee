@@ -12,7 +12,8 @@ Template.campaignItem.events
 				#update campaign
 				Campaign.update campaignId, {$push: {'promotions': result}}
 				promotionCreated = true
-				$('#qrCode').qrcode {text: result.promotionURL}
+				$('#qrCode').qrcode
+					text: result.promotionURL
 				$('#qrModalConfirmation').modal
 					backdrop: 'static'
 					keyboard: false

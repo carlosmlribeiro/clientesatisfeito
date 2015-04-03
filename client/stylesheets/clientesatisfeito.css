@@ -594,6 +594,32 @@ span#errormsg {
     margin-bottom: 20px;
 }
 
+/* Print
+*/
+
+.print {
+    display: none;
+}
+
+@media print {
+    .no-print, no-print *
+    {
+        display: none !important;
+    }
+
+    .print {
+        display: block;
+    }
+
+    html {
+        height: 14.9cm;
+    }
+
+    @page {
+        margin: 75px;
+    }
+}
+
 /* Fonts
 */
 
