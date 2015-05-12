@@ -4,12 +4,28 @@
 	    <div class="modal-content">
 	      <div class="modal-header">
 	        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-	        <h4 class="modal-title" id="pendingWarning">Perfil de utilizador</h4>
+	        <h4 class="modal-title" id="pendingWarning">Perfil de utilizador <small>Clique no seu nome ou email para editar</small></h4>
 	      </div>
 	      <div class="modal-body">
-	        <p>Bem-vindo ao Cliente Satisfeito! </p>
-	        <div class="checkbox"><label><input id="newsletter-cs" type="checkbox" checked="{{currentUser.profile.newsletter}}" /> Avisem-me por email assim que esteja disponível para mim</label></div>
-          	<p><button id="admin-mode-cs" type="button" class="btn btn-default navbar-btn sign-in">Eu sou vendedor</button></p>
+	        <p>
+        		<div class="media">
+              		<span class="pull-left">
+                  		<img class="media-object" src="http://graph.facebook.com/{{currentUser.profile.fbid}}/picture" alt="">
+              		</span>
+              		<div class="media-body">
+                        <div>
+                      		<h5 class="media-heading"><strong><div id="profileName" contenteditable="true">{{currentUser.profile.name}}</div></strong></h5>
+                      		<p><div id="profileEmail" contenteditable="true">{{currentUser.profile.email}}</div></p>
+                        </div>
+              		</div>
+          		</div>
+        	</p>
+	        <div class="checkbox"><label><input id="newsletter-cs" type="checkbox" checked="{{currentUser.profile.newsletter}}" /> Receber comunicações por email</label></div>
+	        <p>&nbsp;</p>
+	         <div class="form-group">
+				<label for="admin-mode-cs">Para transformar os seus clientes em Clientes Satisfeitos tem que ser administrador de pelo menos uma página no Facebook</label>
+				<button id="admin-mode-cs" type="button" class="btn btn-default navbar-btn sign-in">Verificar conta no Facebook</button>
+			</div>
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" data-dismiss="modal" class="btn btn-primary">Fechar</button>
